@@ -1,0 +1,41 @@
+body {
+	height: 100%;
+	width: 100%;
+	overflow: auto;
+}
+
+ul {
+	list-style-type: none;
+}
+
+#contentWrapper {
+	width: 50%;
+	height: 50%;
+	margin: auto;
+}
+
+#chatWrapper {
+	border-radius: 4px;
+	border: 1px solid #eee;
+	text-align: center;
+	background: #eee;
+	height: 100%;
+	min-height: 20em;
+}
+
+#chatBox {
+	overflow: auto;
+	color: black;
+	height: 80%;
+	text-align: left;
+	padding: 10px;
+}
+
+#messageBox {
+	height: 10%;
+	position: relative;
+	bottom: 0;
+	padding: 10px;
+	color: black;
+	border-top: 1px solid white !important;
+}

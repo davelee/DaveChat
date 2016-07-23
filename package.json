@@ -1,0 +1,18 @@
+{
+  "name": "node-test-package",
+  "version": "1.0.0",
+  "description": "A package for testing node stuff.",
+  "main": "iotest.js",
+  "dependencies": {
+    "ejs": "^2.4.2",
+    "express": "^4.14.0",
+    "redis": "^2.6.2",
+    "socket.io": "^1.4.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
