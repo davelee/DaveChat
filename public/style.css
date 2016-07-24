@@ -79,9 +79,26 @@ ul {
 }
 
 #logoWrapper{
-	padding: 20px;
+	padding-bottom: 20px;
 	position: absolute;
 	bottom: 0;
 	left: 50%;
 	transform: translateX(-50%);
+}
+
+@media screen and (max-width : 400px) {
+	body {
+		margin: 0;
+		padding: 0;
+	}
+
+	#chatWrapper {
+		width: 100%;
+		transform: initial;
+		position: initial;
+	}
+
+	#titleWrapper {
+		margin-top: 5px;
+	}
 }
