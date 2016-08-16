@@ -10,7 +10,9 @@
 
 			$scope.messages = [];
 
-			var server = io.connect('http://localhost:8081');
+			var notificationAudio = new Audio('assets/notification.mp3');
+
+			var server = io.connect(SERVER);
 
 			$("#messageForm").submit(function (e) {
 				e.preventDefault();	
@@ -30,6 +32,7 @@
 			server.on('messages', function (data) {
 				$scope.messages.push(data);
 				$scope.$evalAsync();
+				notificationAudio.play();
 			});
 
 		};
