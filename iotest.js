@@ -20,24 +20,28 @@ io.on('connection', function(client) {
 				messages.reverse();
 				messages.forEach(function (message) {
 					message = JSON.parse(message);
-					client.emit('messages', message.name + ': ' + message.data);
+					client.emit('message', message);
 				});
 			}
 		});
 	});
 
-	client.on('messages', function(data) {
+	client.on('message', function(data) {
 
-		var nickname = client.nickname;
+		var message = {
+			sender: client.nickname,
+			content: data,
+			timestamp: new Date()
+		};
 
-		client.broadcast.emit('messages', nickname + ': ' + data);
-		client.emit('messages', nickname + ': ' + data);
+		client.broadcast.emit('message', message);
+		client.emit('message', message);
 
-		var message = JSON.stringify({name : nickname, data: data});
-		console.log(message);
+		var stringMessage = JSON.stringify(message);
+		console.log(stringMessage);
 
-		redisClient.lpush('messages', message, function (err, response) {
-			redisClient.ltrim('messages', 0, 10);
+		redisClient.lpush('messages', stringMessage, function (err, response) {
+			redisClient.ltrim('messages', 0, 100);
 		});
 	});
 });

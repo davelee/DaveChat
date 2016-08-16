@@ -17,24 +17,32 @@
 	<link href="css/style.css" type="text/css" rel="stylesheet" />
 	<link href="css/csshake-slow.css" type="text/css" rel="stylesheet" />
 </head>
-<body ng-controller="ChatController" ng-init="init()">
+<body ng-controller="ChatController as chatCtrl" ng-init="chatCtrl.init()">
 	<div id="contentWrapper">
 		<div id="titleWrapper">
 			<h3 id="title">DaveChat 0.1</h3>
 		</div>
 		<div id="chatWrapper">
 			<div id="chatBox" scroll-glue>
-				<ul>
-					<li ng-repeat="message in messages track by $index">
-						{{message}}
-					</li>
-				</ul>
-			</div>	
+
+				<!-- Messages -->
+				<div class="msg" ng-repeat="message in chatCtrl.messages track by $index">
+					<div class="message message-in tail">
+						<div class="bubble bubble-text">
+							<h3 class="message-sender">{{message.sender}}</h3>
+							<div class="message-content">{{message.content}}</div>
+							<div class="message-meta">
+								<span class="message-timestamp">{{message.timestamp | date : 'shortTime'}}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
 			<div id="messageBox">
-				<form id="messageForm">
-					<input id="messageInput" type="text">
-					<input type="submit" value="Send" hidden="hidden">
-				</form>
+				<div id="messageForm">
+					<input id="messageInput" type="text" ng-model="chatCtrl.messageForm.message" ng-enter="chatCtrl.sendMessage()" autocomplete="off" placeholder="Type a message...">
+				</div>
 			</div>
 		</div>
 		<div id="logoWrapper" class="shake-slow shake-constant shake-constant--hover">

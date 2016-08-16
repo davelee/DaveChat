@@ -2,39 +2,60 @@
 
 	var dave_chat = angular.module('DaveChat', ['luegg.directives']);
 
+	dave_chat.directive('ngEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if(event.which === 13) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.ngEnter);
+                });
+ 
+                event.preventDefault();
+            }
+        });
+    };
+	});
+
 	dave_chat.controller('ChatController', ChatController);
 
 	function ChatController ($scope) {
+		var vm = this; 
 
-		$scope.init = function () {
+		vm.init = function () {
 
-			$scope.messages = [];
+			vm.messages = [];
+			vm.messageForm = {};
 
 			var notificationAudio = new Audio('assets/notification.mp3');
 
 			var server = io.connect(SERVER);
 
-			$("#messageForm").submit(function (e) {
-				e.preventDefault();	
+			vm.sendMessage = function () {	
 				var message = $('#messageInput').val();
 				$('#messageInput').val('');
-				server.emit('messages', message);
-			});	
 
+				// Emit message event with message content
+				server.emit('message', message);
+			};	
+
+			// Listen for successful connection event
 			server.on('connect', function () {
 				var savedNickname = localStorage.getItem('nickname');
 				var nickname = (savedNickname === null) ? 
 												prompt("What is your nickname?") : savedNickname;
 				localStorage.setItem("nickname", nickname);
+
+				// Emit join event with chosen nickname
 				server.emit('join', nickname);
 			});
 
-			server.on('messages', function (data) {
-				$scope.messages.push(data);
+			// Listen for the 'message' event
+			server.on('message', function (data) {
+				vm.messages.push(data);
 				$scope.$evalAsync();
+
 				notificationAudio.play();
 			});
-
 		};
 	}
 })();
