@@ -42,8 +42,4 @@ io.on('connection', function(client) {
 	});
 });
 
-app.get('/', function (request, response) {
-		response.sendFile("index.html");
-});
-
 server.listen(8081);
