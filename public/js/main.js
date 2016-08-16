@@ -20,7 +20,10 @@
 			});	
 
 			server.on('connect', function () {
-				var nickname = prompt("What is your nickname?");
+				var savedNickname = localStorage.getItem('nickname');
+				var nickname = (savedNickname === null) ? 
+												prompt("What is your nickname?") : savedNickname;
+				localStorage.setItem("nickname", nickname);
 				server.emit('join', nickname);
 			});
 

@@ -6,7 +6,6 @@ var io = require('socket.io')(server);
 var redis = require('redis');
 var redisClient = redis.createClient();
 
-app.use("/", express.static(__dirname + '/public'));
 app.use(favicon(__dirname + '/public/favicon.ico')); 
 
 io.on('connection', function(client) {
