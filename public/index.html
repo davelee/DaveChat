@@ -23,13 +23,14 @@
 			<h3 id="title">DaveChat 0.1</h3>
 		</div>
 		<div id="chatWrapper">
-			<div id="chatBox" scroll-glue>
 
-				<!-- Messages -->
+			<!-- Begin Messages -->
+			<div id="chatBox" scroll-glue>
 				<div class="msg" ng-repeat="message in chatCtrl.messages track by $index">
-					<div class="message message-in tail">
+					<div class="message tail" ng-class="{'message-in': !message.isSender,
+																							 'message-out': message.isSender}">
 						<div class="bubble bubble-text">
-							<h3 class="message-sender">{{message.sender}}</h3>
+							<h3 class="message-sender">{{message.sender.nickname}}</h3>
 							<div class="message-content">{{message.content}}</div>
 							<div class="message-meta">
 								<span class="message-timestamp">{{message.timestamp | date : 'shortTime'}}</span>
@@ -37,14 +38,18 @@
 						</div>
 					</div>
 				</div>
-
 			</div>
+			<!-- End Messages -->
+
+			<!-- Begin New Message Box -->
 			<div id="messageBox">
 				<div id="messageForm">
 					<input id="messageInput" type="text" ng-model="chatCtrl.messageForm.message" ng-enter="chatCtrl.sendMessage()" autocomplete="off" placeholder="Type a message...">
 				</div>
 			</div>
 		</div>
+		<!-- End New Meessage Box -->
+
 		<div id="logoWrapper" class="shake-slow shake-constant shake-constant--hover">
 			<a href="http://davelee.io" target="_blank">
 				<img id="logo" src="assets/dlee.png">

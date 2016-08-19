@@ -1,1 +1,1 @@
-var SERVER = 'https://davelee.io';
+var SERVER = 'http://localhost:8081';

@@ -5,19 +5,36 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var redis = require('redis');
 var redisClient = redis.createClient();
+var uuid = require('node-uuid');
 
-app.use(favicon(__dirname + '/public/favicon.ico')); 
+// Port to have this server listen on.
+var port = 8081;
 
+app.use(favicon(__dirname + '/public/favicon.ico'));
+
+
+// Listen for new connection
 io.on('connection', function(client) {
 	console.log('Client connected...');
 
-	client.on('join', function (name) {
-		client.nickname = name;
-		console.log(client.nickname + ' joined the chat...');
+	// Listen on 'join' event for client
+	client.on('join', function (account) {
 
+		if (account.uuid == null) {
+			account.uuid = uuid.v4();
+			client.emit('identity', account.uuid);
+		}
+		client.account = account;
+
+		console.log(client.account.nickname + ' joined the chat...');
+		console.log(client.account.nickname + " has id: " + client.account.uuid);
+
+		// Get all messages from redis
 		redisClient.lrange('messages', 0, -1, function (err, messages) {
 			if (messages) {
 				messages.reverse();
+				
+				// Send each existing message to client for chat context
 				messages.forEach(function (message) {
 					message = JSON.parse(message);
 					client.emit('message', message);
@@ -28,8 +45,10 @@ io.on('connection', function(client) {
 
 	client.on('message', function(data) {
 
+		var sender = client.account;
+
 		var message = {
-			sender: client.nickname,
+			sender: sender,
 			content: data,
 			timestamp: new Date()
 		};
@@ -46,4 +65,5 @@ io.on('connection', function(client) {
 	});
 });
 
-server.listen(8081);
+console.log("Starting up DaveChat, listening on port " + port);
+server.listen(port);
