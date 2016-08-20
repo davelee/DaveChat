@@ -268,6 +268,7 @@ ul {
 		position: fixed;
 		left: 0;
 		top: 53px;
+		overflow-y: scroll;
 	}
 
 	#chatBox {
@@ -277,6 +278,8 @@ ul {
     top: 53px;
     bottom: 30px;
     height: auto;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 	}
 
 	#titleWrapper {
