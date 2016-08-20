@@ -39,7 +39,7 @@ ul {
 	position: relative;
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 800px) {
 	#chatWrapper {
 	    width: 800px;
 	    height: calc(100% - 150px);
@@ -240,7 +240,7 @@ ul {
     background: rgba(255,255,255,.08)
 }
 
-@media screen and (max-width : 400px) {
+@media screen and (max-width : 667px) {
 	body {
 		margin: 0;
 		padding: 0;
@@ -285,6 +285,8 @@ ul {
 		padding: 0;
 		position: fixed;
 		height: initial;
+		border: 0;
+		box-shadow: none;
 	}
 
 	#messageForm, #messageInput {
