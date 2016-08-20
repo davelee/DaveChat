@@ -48,6 +48,15 @@ ul {
 	}
 }
 
+@media screen and (max-width: 799px) {
+	#chatWrapper {
+		width: 100%;
+    height: calc(100% - 150px);
+    margin: 0 auto;
+    top: 19px;
+	}
+}
+
 #chatBox {
 	overflow-x: hidden;
 	overflow-y: scroll;
