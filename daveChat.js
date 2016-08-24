@@ -80,7 +80,7 @@ io.on('connection', function(client) {
 
 	// Listen on disconnect event for the client
 	client.on('disconnect', function() {
-		if (client.account)
+		if (client.account) {
 			console.log("Client: " + client.account.nickname + " has disconnected...");
 			client.broadcast.emit('client-left', client.account);
 		}
