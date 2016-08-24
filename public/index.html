@@ -16,42 +16,82 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
 	<link href="css/style.css" type="text/css" rel="stylesheet" />
 	<link href="css/csshake-slow.css" type="text/css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600%7CRoboto:300,400,500" media="all" />
 </head>
 <body ng-controller="ChatController as chatCtrl" ng-init="chatCtrl.init()">
 	<div id="contentWrapper">
 		<div id="titleWrapper">
 			<h3 id="title">DaveChat 0.1</h3>
 		</div>
+
 		<div id="chatWrapper">
 
-			<!-- Begin Messages -->
-			<div id="chatBox" scroll-glue>
-				<div class="msg" ng-repeat="message in chatCtrl.messages track by $index">
-					<div class="message tail" ng-class="{'message-in': !message.isSender,
-																							 'message-out': message.isSender}">
-						<div class="bubble bubble-text">
-							<h3 class="message-sender">{{message.sender.nickname}}</h3>
-							<div class="message-content">{{message.content}}</div>
-							<div class="message-meta">
-								<span class="message-timestamp">{{message.timestamp | date : 'shortTime'}}</span>
+			<!-- Current chatters-->
+			<div id="chatPanel1">
+				<div class="chat-header">
+				</div>
+				<div id="chatMenu" class="chat-control-tab">
+					<div>
+						<div class="chat-client" ng-repeat="(id, client) in chatCtrl.clients" ng-class="{'disconnected-client': client.disconnected}">
+							<div class="chat-client-avatar">
+								<div class="avatar icon-user-default" style="height: 49px; width: 49px;"></div>
+							</div>
+							<div class="chat-client-body">
+
+								<div class="chat-client-primary">
+
+									<div class="chat-client-name">
+										<span ng-attr-title="{{client.nickname}}" class="ellipsify">{{client.nickname}}</span>
+									</div>
+
+									<div class="chat-client-meta">
+										<span class="chat-client-time">{{client.lastMessage.timestamp | date: 'shortTime'}}</span>
+									</div>
+
+								</div>
+
+								<div class="chat-client-secondary">
+									<div class="chat-client-status">
+										<span ng-if="!client.disconnected" class="ellipsify">{{client.lastMessage.content}}</span>
+										<span ng-if="client.disconnected" class="left-the-chat">left the chat</span>
+									</div>
+								</div>
+
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- End Messages -->
+			<div id="chatPanel2">
+				<div id="chatBackground"></div>
+				<!-- Begin Messages -->
+				<div id="chatBox" scroll-glue>
+					<div class="msg" ng-repeat="message in chatCtrl.messages track by $index">
+						<div class="message tail" ng-class="{'message-in': !message.isSender,
+																								 'message-out': message.isSender}">
+							<div class="bubble bubble-text">
+								<h3 class="message-sender">{{message.sender.nickname}}</h3>
+								<div class="message-content">{{message.content}}</div>
+								<div class="message-meta">
+									<span class="message-timestamp">{{message.timestamp | date : 'shortTime'}}</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End Messages -->
 
-			<!-- Begin New Message Box -->
-			<div id="messageBox">
-				<div id="messageForm">
-					<input id="messageInput" type="text" ng-model="chatCtrl.messageForm.message" ng-enter="chatCtrl.sendMessage()" autocomplete="off" placeholder="Type a message...">
+				<!-- Begin New Message Box -->
+				<div id="messageBox">
+					<div id="messageForm">
+						<input id="messageInput" type="text" ng-model="chatCtrl.messageForm.message" ng-enter="chatCtrl.sendMessage()" autocomplete="off" placeholder="Type a message...">
+					</div>
 				</div>
 			</div>
+			<!-- End New Meessage Box -->
 		</div>
-		<!-- End New Meessage Box -->
-
 		<div id="logoWrapper" class="shake-slow shake-constant shake-constant--hover">
-			<a href="http://davelee.io" target="_blank">
+			<a href="https://davelee.io" target="_blank">
 				<img id="logo" src="assets/dlee.png">
 			</a>
 		</div>

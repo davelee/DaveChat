@@ -20,7 +20,7 @@ io.on('connection', function(client) {
 	// Listen on 'join' event for client
 	client.on('join', function (account) {
 
-		if (account.uuid == null) {
+		if ( (!account.hasOwnProperty('uuid')) || account.uuid == null) {
 			account.uuid = uuid.v4();
 			client.emit('identity', account.uuid);
 		}
@@ -28,6 +28,19 @@ io.on('connection', function(client) {
 
 		console.log(client.account.nickname + ' joined the chat...');
 		console.log(client.account.nickname + " has id: " + client.account.uuid);
+
+		// Tell all clients about new client
+		client.broadcast.emit('client-join', client.account);
+
+		// Emit list of clients to new client
+		io.of("/").clients(function (error, clients) {
+			clients.forEach(function (cli) {
+				var cliObj = io.sockets.connected[cli];
+				if (cliObj.account != null) {
+					client.emit('client-join', cliObj.account);
+				}
+			});
+		});
 
 		// Get all messages from redis
 		redisClient.lrange('messages', 0, -1, function (err, messages) {
@@ -43,6 +56,7 @@ io.on('connection', function(client) {
 		});
 	});
 
+	// Listen on 'message' event from client
 	client.on('message', function(data) {
 
 		var sender = client.account;
@@ -63,6 +77,15 @@ io.on('connection', function(client) {
 			redisClient.ltrim('messages', 0, 100);
 		});
 	});
+
+	// Listen on disconnect event for the client
+	client.on('disconnect', function() {
+		if (client.account)
+			console.log("Client: " + client.account.nickname + " has disconnected...");
+			client.broadcast.emit('client-left', client.account);
+		}
+	});
+
 });
 
 console.log("Starting up DaveChat, listening on port " + port);
