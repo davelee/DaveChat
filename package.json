@@ -1,7 +1,7 @@
 {
-  "name": "node-test-package",
+  "name": "dave-chat",
   "version": "1.0.0",
-  "description": "A package for testing node stuff.",
+  "description": "A simple messaging app.",
   "main": "iotest.js",
   "dependencies": {
     "ejs": "^2.4.2",
@@ -15,6 +15,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Dave Lee",
   "license": "ISC"
 }
