@@ -32,7 +32,7 @@
 				</div>
 				<div id="chatMenu" class="chat-control-tab">
 					<div>
-						<div class="chat-client" ng-repeat="(id, client) in chatCtrl.clients" ng-class="{'disconnected-client': client.disconnected}">
+						<div class="chat-client" ng-repeat="(id, client) in chatCtrl.clients" ng-class="{'disconnected-client': client.disconnected, 'connected': !client.disconnected}">
 							<div class="chat-client-avatar">
 								<div class="avatar icon-user-default" style="height: 49px; width: 49px;"></div>
 							</div>

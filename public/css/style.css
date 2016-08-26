@@ -350,6 +350,7 @@ ul {
 .message-sender {
   font-family: 'Open Sans', sans-serif;
   font-size: 12.5px;
+  text-transform: capitalize;
   line-height: 20px;
   height: 20px;
   font-weight: 600;
@@ -444,6 +445,12 @@ ul {
 
 .disconnected-client {
     opacity: .3;
+}
+
+.connected .chat-client-name::after {
+    content: ' \25CF';
+    font-size: 10px;
+    color: #8bc34a;
 }
 
 *::-webkit-scrollbar {
