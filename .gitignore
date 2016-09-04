@@ -39,3 +39,4 @@ jspm_packages
 
 deploy.sh
 public/js/config.js
+*/.DS_Store
