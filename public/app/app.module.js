@@ -1,5 +1,11 @@
 (function () {
+	
+	'use strict';
 
-	var daveChat = angular.module('DaveChat', ['luegg.directives', 'ngAnimate', 'angularModalService']);
-
+	var daveChat = angular.module('DaveChat', [
+		'ui.router',
+	 	'luegg.directives',
+	 	'ngAnimate',
+	 	'angularModalService'
+ 	]);
 })();

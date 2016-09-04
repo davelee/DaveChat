@@ -1,5 +1,7 @@
 (function () {
 
+	'use strict';
+	
 	var daveChat = angular.module('DaveChat');
 
 	daveChat.controller('ChatController', ChatController);
