@@ -4,6 +4,9 @@
   "description": "A simple messaging app.",
   "main": "iotest.js",
   "dependencies": {
+    "angular-animate": "1.5.8",
+    "angular-modal-service": "0.10.1",
+    "bootstrap": "3.3.7",
     "ejs": "^2.4.2",
     "express": "^4.14.0",
     "node-uuid": "1.4.7",

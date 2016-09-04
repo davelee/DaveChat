@@ -1,3 +1,7 @@
+html, body, div, span, p, h1, h2, h3, h4, h5, h6 {
+	font-family: 'Open Sans', sans-serif;
+}
+
 body {
 	height: 100%;
 	width: 100%;
@@ -44,7 +48,7 @@ ul {
 }
 
 #chatBackground {
-	background-image: url("/chat/assets/splash2.png");
+	background-image: url("/chat/assets/img/splash2.png");
 	background-size: 366.5px 666px;
 	background-repeat: repeat repeat;
 	position: absolute;
@@ -283,6 +287,7 @@ ul {
 }
 
 #messageInput {
+	font-family: 'Open Sans', sans-serif;
 	font-size: 13.6px;
 	height: 3em;
 	width: 100%;
@@ -550,4 +555,14 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, p, img {
   font: inherit;
   vertical-align: baseline;
   outline: none;
+}
+
+.modal-backdrop.in {
+	background: #efefef;
+}
+
+.modal-content {
+	box-shadow: none;
+	border: 0;
+	font-family: 'Open Sans', sans-serif;
 }

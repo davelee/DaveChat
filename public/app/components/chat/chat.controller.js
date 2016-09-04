@@ -1,24 +1,10 @@
 (function () {
 
-	var dave_chat = angular.module('DaveChat', ['luegg.directives']);
+	var daveChat = angular.module('DaveChat');
 
-	dave_chat.directive('ngEnter', function () {
-    return function (scope, element, attrs) {
-        element.bind("keydown keypress", function (event) {
-            if(event.which === 13) {
-                scope.$apply(function (){
-                    scope.$eval(attrs.ngEnter);
-                });
- 
-                event.preventDefault();
-            }
-        });
-    };
-	});
+	daveChat.controller('ChatController', ChatController);
 
-	dave_chat.controller('ChatController', ChatController);
-
-	function ChatController ($scope) {
+	function ChatController ($scope, ModalService) {
 		var vm = this; 
 
 		vm.init = function () {
@@ -27,7 +13,7 @@
 			vm.messages = [];
 			vm.messageForm = {};
 
-			var notificationAudio = new Audio('assets/notification.mp3');
+			var notificationAudio = new Audio('assets/media/notification.mp3');
 
 			// Get/set account from localStorage
 			var savedAccount = JSON.parse(localStorage.getItem('account'));
@@ -64,8 +50,7 @@
 				while (vm.account.nickname == null || vm.account.nickname == "") {
 					vm.account.nickname = prompt("What is your nickname?")
 					localStorage.setItem("account", JSON.stringify(vm.account));
-				}
-
+    		}
 				// Emit join event with chosen nickname
 				server.emit('join', vm.account);
 			});
