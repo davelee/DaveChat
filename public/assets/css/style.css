@@ -1,3 +1,27 @@
+@font-face {
+    font-family: Lato;
+    src: url(/chat/assets/fonts/lato-bold-webfont.eot);
+    src: url(/chat/assets/fonts/lato-bold-webfont.eot?#iefix) format('embedded-opentype'),url(/chat/assets/fonts/lato-bold-webfont.woff2) format('woff2'),url(/chat/assets/fonts/lato-bold-webfont.woff) format('woff'),url(/chat/assets/fonts/lato-bold-webfont.ttf) format('truetype'),url(/chat/assets/fonts/lato-bold-webfont.svg#latobold) format('svg');
+    font-weight: 700;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Lato;
+    src: url(/chat/assets/fonts/lato-bold-webfont.eot);
+    src: url(/chat/assets/fonts/lato-bold-webfont.eot?#iefix) format('embedded-opentype'),url(/chat/assets/fonts/lato-bold-webfont.woff2) format('woff2'),url(/chat/assets/fonts/lato-bold-webfont.woff) format('woff'),url(/chat/assets/fonts/lato-bold-webfont.ttf) format('truetype'),url(/chat/assets/fonts/lato-bold-webfont.svg#latolight) format('svg');
+    font-weight: 600;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Lato;
+    src: url(/fonts/lato-regular-webfont.eot);
+    src: url(/fonts/lato-regular-webfont.eot?#iefix) format('embedded-opentype'),url(/chat/assets/fonts/lato-regular-webfont.woff2) format('woff2'),url(/chat/assets/fonts/lato-regular-webfont.woff) format('woff'),url(/chat/assets/fonts/lato-regular-webfont.ttf) format('truetype'),url(/chat/assets/fonts/lato-regular-webfont.svg#latoregular) format('svg');
+    font-weight: 400;
+    font-style: normal
+}
+
 html, body, div, span, p, h1, h2, h3, h4, h5, h6 {
 	font-family: 'Open Sans', sans-serif;
 }
@@ -8,13 +32,13 @@ body {
 	overflow: hidden;
 	font-size: 16px;
 	font-family: 'Open Sans', 'Roboto', sans-serif;
-	background-image: linear-gradient(to bottom,#dddbd1,#d2dbdc);
+	background-image: linear-gradient(to bottom,#f4f4f4,#f4f4f4);
 }
 
 body::after {
   position: fixed;
   z-index: -1;
-  background-color: #8BC34A;
+  background-image: linear-gradient(to bottom,#FF5A00,#FF5A00);
   width: 100%;
   height: 127px;
   content: '';
@@ -45,6 +69,7 @@ ul {
 	margin: auto;
 	position: relative;
 	display: flex;
+	border-radius: 4px;
 }
 
 #chatBackground {
@@ -564,5 +589,56 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, p, img {
 .modal-content {
 	box-shadow: none;
 	border: 0;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Lato','Open Sans', sans-serif;
+}
+
+#welcome-wrapper {
+	font-family: 'Lato', 'Open Sans', sans-serif;
+	width: 100%;
+	padding: 10px;
+	background: #fff;
+	text-align: center;
+	position: relative;
+}
+
+#welcome-wrapper .input-group {
+	display: inline-table;
+	margin-top: 10px;
+	width: 100%;
+}
+
+#welcome-title h1 {
+	-webkit-font-smoothing: antialiased;
+	font-size: 20px;
+	color: rgba(64,64,64,1);
+	font-weight: 700;
+	margin: 5px;
+	letter-spacing: .3px;
+}
+
+.light-blue {
+	color: #33a0ff;
+}
+
+#welcome-message {
+	font-size: 14px;
+	color: rgba(0,0,0,.4);
+	font-weight: 400;
+}
+
+#welcome-content {
+	top: 50%;
+  text-align: center;
+  position: absolute;
+  transform: translateY(-50%);
+  margin: auto;
+  width: 100%;
+}
+
+#nicknameInput {
+	font-size: 10px;
+	font-family: 'Open Sans';
+	padding: 4px;
+	font-weight: lighter;
+	border: 1px solid #efefef;
 }
