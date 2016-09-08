@@ -126,6 +126,11 @@ ul {
 	background-color: #f2f2f2;
 }
 
+#chatMenu {
+	overflow-y: scroll;
+	max-height: calc(100% - 59px);
+}
+
 .chat-client {
 	height: 72px;
 	margin: 0;
