@@ -2,7 +2,7 @@
   "name": "dave-chat",
   "version": "1.0.0",
   "description": "A simple messaging app.",
-  "main": "iotest.js",
+  "main": "daveChat.js",
   "dependencies": {
     "angular-animate": "1.5.8",
     "angular-modal-service": "0.10.1",
